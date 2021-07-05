@@ -12,4 +12,7 @@ class TextStyles {
     letterSpacing: 2,
     wordSpacing: 4
   );
+   static final emailSenha = GoogleFonts.inconsolata(
+    fontSize: 18, fontWeight: FontWeight.w500, color: Color(0xFF7F85A2)
+  );
 }
