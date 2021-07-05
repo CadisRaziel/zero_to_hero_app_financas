@@ -4,7 +4,8 @@ import 'package:zero_to_hero/shared/theme/app_images.dart';
 import 'package:zero_to_hero/shared/theme/app_text_Style.dart';
 
 import 'widgets/button_text_widget.dart';
-import 'widgets/input_text_widget.dart';
+import 'widgets/input_text_email_widget.dart';
+import 'widgets/Input_text_pass_widget.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -21,13 +22,12 @@ class _LoginPageState extends State<LoginPage> {
       body: Stack(
         children: [
           Align(
-            alignment: Alignment.topCenter,
-            child: Container(
-              width: size.width,
-              height: size.height * 0.4,
-              child: Image.asset(AppImages.logoLogin, fit: BoxFit.fitHeight),
-            )
-          ),
+              alignment: Alignment.topCenter,
+              child: Container(
+                width: size.width,
+                height: size.height * 0.4,
+                child: Image.asset(AppImages.logoLogin, fit: BoxFit.fitHeight),
+              )),
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
@@ -51,34 +51,40 @@ class _LoginPageState extends State<LoginPage> {
                         'Mantenha suas contas em dia',
                         style: TextStyles.titleHome,
                       ),
-                      SizedBox(height: 40),
+                      SizedBox(height: 25),
+
                       ///[caso eu coloque o botão logar com google tenho que por height:20]
                       // SizedBox(height: 20),
-                      InputTextWidget(
+                      InputTextEmailWidget(
+                        onValidate: (value) => value.contains('@') ? '' : 'Email inválido',
                         label: 'Email:',
                       ),
                       SizedBox(
                         height: 20,
                       ),
-                      InputTextWidget(
-                        label: 'Senha:',
+                      InputTextPassWidget(        
+                        onValidate: (value) => value.length >= 6 ? '' : 'A senha deve ter no mínimo 6 caracteres',                
+                        label: 'Senha',
                       ),
                       ElevatedButtonWidget(
-                        voidCallback: (){},
+                        voidCallback: () {},
                         label: 'Entrar',
                       ),
+
                       ///[caso eu queria um botão para entrar com conta google]
                       // ElevatedButtonWidget(
                       //   voidCallback: (){},
                       //   label: 'Entrar',
                       // ),
-                      SizedBox(height: 10,),
+                      SizedBox(
+                        height: 10,
+                      ),
                       ButtonTextWidget(
-                      voidCallback: (){},
+                        voidCallback: () {},
                         label: 'Esqueci minha senha',
                       ),
                       ButtonTextWidget(
-                        voidCallback: (){},
+                        voidCallback: () {},
                         label: 'Criar Conta',
                       ),
                     ],
