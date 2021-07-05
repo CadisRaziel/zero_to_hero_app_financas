@@ -1,7 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:zero_to_hero/modules/login/widgets/button_elevated_widget.dart';
+import 'package:zero_to_hero/shared/theme/app_images.dart';
 import 'package:zero_to_hero/shared/theme/app_text_Style.dart';
 
 import 'widgets/button_text_widget.dart';
@@ -21,10 +20,13 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
-            width: size.width,
-            height: size.height,
-            color: Colors.green,
+          Align(
+            alignment: Alignment.topCenter,
+            child: Container(
+              width: size.width,
+              height: size.height * 0.4,
+              child: Image.asset(AppImages.logoLogin, fit: BoxFit.fitHeight),
+            )
           ),
           Align(
             alignment: Alignment.bottomCenter,
@@ -50,11 +52,13 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyles.titleHome,
                       ),
                       SizedBox(height: 40),
+                      ///[caso eu coloque o botão logar com google tenho que por height:20]
+                      // SizedBox(height: 20),
                       InputTextWidget(
                         label: 'Email:',
                       ),
                       SizedBox(
-                        height: 15,
+                        height: 20,
                       ),
                       InputTextWidget(
                         label: 'Senha:',
@@ -63,6 +67,12 @@ class _LoginPageState extends State<LoginPage> {
                         voidCallback: (){},
                         label: 'Entrar',
                       ),
+                      ///[caso eu queria um botão para entrar com conta google]
+                      // ElevatedButtonWidget(
+                      //   voidCallback: (){},
+                      //   label: 'Entrar',
+                      // ),
+                      SizedBox(height: 10,),
                       ButtonTextWidget(
                       voidCallback: (){},
                         label: 'Esqueci minha senha',
