@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:zero_to_hero/modules/login/login_controller.dart';
+import 'package:zero_to_hero/modules/login/pages/login/login_controller.dart';
 import 'package:zero_to_hero/modules/login/utils/login_validators.dart';
 import 'package:zero_to_hero/modules/login/widgets/button_elevated_enabled_widget.dart';
 import 'package:zero_to_hero/shared/theme/app_images.dart';
 import 'package:zero_to_hero/shared/theme/app_text_Style.dart';
 
-import 'widgets/button_elevated_disable_widget.dart';
-import 'widgets/button_text_widget.dart';
-import 'widgets/input_text_email_widget.dart';
-import 'widgets/Input_text_pass_widget.dart';
+import '../../widgets/button_elevated_disable_widget.dart';
+import '../../widgets/button_text_widget.dart';
+import '../../widgets/input_text_email_widget.dart';
+import '../../widgets/Input_text_pass_widget.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -100,7 +100,9 @@ class _LoginPageState extends State<LoginPage> {
                         label: 'Esqueci minha senha',
                       ),
                       ButtonTextWidget(
-                        voidCallback: () {},
+                        voidCallback: () {
+                          Navigator.pushNamed(context, 'page_create_account');
+                        },
                         label: 'Criar Conta',
                       ),
                     ],

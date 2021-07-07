@@ -28,4 +28,11 @@ class LoginValidators {
       return 'A senha deve ter no mínimo 6 caracteres';
     }
   }
+  static String name(String value){
+    if(value.split(' ').length > 1) {
+      return '';
+    } else {
+      return 'Digitar o nome completo';
+    }
+  }
 }
