@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:zero_to_hero/shared/theme/app_text_Style.dart';
 
-class ElevatedButtonWidget extends StatelessWidget {
+class ElevatedButtonEnabledWidget extends StatelessWidget {
   final VoidCallback voidCallback;
   final String label;
-  const ElevatedButtonWidget({
+  const ElevatedButtonEnabledWidget({
     Key? key,
     required this.voidCallback,
     required this.label,

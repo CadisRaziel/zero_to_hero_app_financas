@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:zero_to_hero/modules/login/login_controller.dart';
 import 'package:zero_to_hero/modules/login/utils/login_validators.dart';
-import 'package:zero_to_hero/modules/login/widgets/button_elevated_widget.dart';
+import 'package:zero_to_hero/modules/login/widgets/button_elevated_enabled_widget.dart';
 import 'package:zero_to_hero/shared/theme/app_images.dart';
 import 'package:zero_to_hero/shared/theme/app_text_Style.dart';
 
+import 'widgets/button_elevated_disable_widget.dart';
 import 'widgets/button_text_widget.dart';
 import 'widgets/input_text_email_widget.dart';
 import 'widgets/Input_text_pass_widget.dart';
@@ -17,7 +18,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   final controller = LoginController();
 
   @override
@@ -61,26 +61,31 @@ class _LoginPageState extends State<LoginPage> {
                       ///[caso eu coloque o botão logar com google tenho que por height:20]
                       // SizedBox(height: 20),
                       InputTextEmailWidget(
-                        onChange: (email) => controller.onChangedAndValidate(email: email),
+                        onChange: (email) =>
+                            controller.onChangedAndValidate(email: email),
                         onValidate: LoginValidators.email,
                         label: 'Email:',
                       ),
                       SizedBox(
                         height: 20,
                       ),
-                      InputTextPassWidget(   
-                        onChange: (password) => controller.onChangedAndValidate(password: password),     
-                        onValidate: LoginValidators.password,               
+                      InputTextPassWidget(
+                        onChange: (password) =>
+                            controller.onChangedAndValidate(password: password),
+                        onValidate: LoginValidators.password,
                         label: 'Senha',
                       ),
-                      ValueListenableBuilder(
+                      ValueListenableBuilder<bool>(
                         valueListenable: controller.enabledButtonNotifier,
-                         builder: (context, enabled, widget) => enabled as bool ?  ElevatedButtonWidget(
-                        voidCallback: () {},
-                        label: 'Entrar',
-                      ) : Container(),
-
-                         ),
+                        builder: (context, enabled, widget) => enabled
+                            ? ElevatedButtonEnabledWidget(
+                                voidCallback: () {},
+                                label: 'Entrar',
+                              )
+                            : ElevatedButtonDisabledWidget(
+                                label: 'Entrar',
+                              ),
+                      ),
 
                       ///[caso eu queria um botão para entrar com conta google]
                       // ElevatedButtonWidget(
