@@ -36,20 +36,17 @@ class _InputTextPassWidgetState extends State<InputTextPassWidget> {
   bool showPassword = true;
   bool showConfirmPassword = true;
 
-  FocusNode? passwordFocusNode;
   FocusNode? confirmPasswordFocusNode;
 
   @override
   void initState() {
-    super.initState();
-    passwordFocusNode = FocusNode();
+    super.initState();    
     confirmPasswordFocusNode = FocusNode();
   }
 
   @override
   void dispose() {
-    super.dispose();
-    passwordFocusNode!.dispose();
+    super.dispose();  
     confirmPasswordFocusNode!.dispose();
   }
 
