@@ -53,9 +53,6 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                         style: TextStyles.titleHome,
                       ),                      
                       SizedBox(height: 15),
-
-                      ///[caso eu coloque o botão logar com google tenho que por height:20]
-                      // SizedBox(height: 20),
                       InputTextEmailWidget(
                         onChange: (name) =>
                             controller.onChangedAndValidate(name: name),
@@ -91,12 +88,6 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                                 label: 'Criar Conta',
                               ),
                       ),
-
-                      ///[caso eu queria um botão para entrar com conta google]
-                      // ElevatedButtonWidget(
-                      //   voidCallback: (){},
-                      //   label: 'Entrar',
-                      // ),
                       SizedBox(
                         height: 6,
                       ),

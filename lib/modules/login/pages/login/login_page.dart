@@ -96,7 +96,9 @@ class _LoginPageState extends State<LoginPage> {
                         height: 10,
                       ),
                       ButtonTextWidget(
-                        voidCallback: () {},
+                        voidCallback: () {
+                           Navigator.pushNamed(context, 'recovery_password_page');
+                        },
                         label: 'Esqueci minha senha',
                       ),
                       ButtonTextWidget(
