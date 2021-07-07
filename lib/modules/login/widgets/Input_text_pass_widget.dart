@@ -32,6 +32,28 @@ class _InputTextPassWidgetState extends State<InputTextPassWidget> {
     }
   }
 
+  bool showPassword = true;
+  bool showConfirmPassword = true;
+
+  FocusNode? passwordFocusNode;
+  FocusNode? confirmPasswordFocusNode;
+
+  @override
+  void initState() {   
+    super.initState();
+    passwordFocusNode = FocusNode();
+    confirmPasswordFocusNode = FocusNode();
+  }
+
+  @override
+  void dispose(){
+    super.dispose();
+    passwordFocusNode!.dispose();
+    confirmPasswordFocusNode!.dispose();
+
+  }
+
+  
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -46,15 +68,30 @@ class _InputTextPassWidgetState extends State<InputTextPassWidget> {
         Padding(
           padding: const EdgeInsets.only(left: 16, right: 16),
           child: TextField(
+            focusNode: confirmPasswordFocusNode,
+            onTap: (){
+              setState(() {
+                FocusScope.of(context).unfocus();
+                FocusScope.of(context).requestFocus(confirmPasswordFocusNode);
+              });
+            },
+            obscureText: showConfirmPassword,
             onChanged: onChangedValidate,
             cursorColor: Colors.teal,
             style: TextStyles.emailSenha,
-            obscureText: true,
             decoration: InputDecoration(
               errorText: _error,
               //focusedErrorBorder = para tirar a linha vermelha do input quando email não é validio
               focusedErrorBorder: InputBorder.none,
+              errorBorder: InputBorder.none,
               filled: true,
+              suffixIcon: IconButton(
+                icon: Icon(Icons.remove_red_eye, color: Colors.grey,),
+                onPressed: () => setState((){
+                  showPassword = !showPassword;
+                  showConfirmPassword = !showConfirmPassword;
+                }),
+              ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16),
                 borderSide: BorderSide(
