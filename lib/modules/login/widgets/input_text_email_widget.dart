@@ -12,10 +12,12 @@ typedef String InputValidate(String value);
 class InputTextEmailWidget extends StatefulWidget {
   final String label;
   final InputValidate onValidate;
+  final void Function(String value)? onChange;
   const InputTextEmailWidget({
     Key? key,
     required this.label,
     required this.onValidate,
+    this.onChange,
   }) : super(key: key);
 
   @override
@@ -25,7 +27,12 @@ class InputTextEmailWidget extends StatefulWidget {
 class _InputTextEmailWidgetState extends State<InputTextEmailWidget> {
   String? _error;
 
+
+  ///[validação de login e senha]
   void onChangedValidate(String value) {
+    if(widget.onChange != null){
+      widget.onChange!(value);
+    }
     if (value.isNotEmpty) {
       _error = widget.onValidate(value);
       setState(() {});
@@ -53,6 +60,7 @@ class _InputTextEmailWidgetState extends State<InputTextEmailWidget> {
               errorText: _error,
               //focusedErrorBorder = para tirar a linha vermelha do input quando email não é validio
               focusedErrorBorder: InputBorder.none,
+              errorBorder: InputBorder.none,
               suffixIcon: Icon(
                 Icons.check_circle_outline_outlined,
                 color: Colors.teal,

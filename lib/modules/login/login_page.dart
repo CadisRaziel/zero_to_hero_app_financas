@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zero_to_hero/modules/login/utils/login_validators.dart';
 import 'package:zero_to_hero/modules/login/widgets/button_elevated_widget.dart';
 import 'package:zero_to_hero/shared/theme/app_images.dart';
 import 'package:zero_to_hero/shared/theme/app_text_Style.dart';
@@ -56,14 +57,15 @@ class _LoginPageState extends State<LoginPage> {
                       ///[caso eu coloque o botão logar com google tenho que por height:20]
                       // SizedBox(height: 20),
                       InputTextEmailWidget(
-                        onValidate: (value) => value.contains('@') ? '' : 'Email inválido',
+                        onChange: print,
+                        onValidate: LoginValidators.email,
                         label: 'Email:',
                       ),
                       SizedBox(
                         height: 20,
                       ),
                       InputTextPassWidget(        
-                        onValidate: (value) => value.length >= 6 ? '' : 'A senha deve ter no mínimo 6 caracteres',                
+                        onValidate: LoginValidators.password,               
                         label: 'Senha',
                       ),
                       ElevatedButtonWidget(
