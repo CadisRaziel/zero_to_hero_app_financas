@@ -32,6 +32,7 @@ class _InputTextPassWidgetState extends State<InputTextPassWidget> {
     }
   }
 
+  ///[Colocando o código para esconder a senha e mostrar ela]
   bool showPassword = true;
   bool showConfirmPassword = true;
 
@@ -39,21 +40,26 @@ class _InputTextPassWidgetState extends State<InputTextPassWidget> {
   FocusNode? confirmPasswordFocusNode;
 
   @override
-  void initState() {   
+  void initState() {
     super.initState();
     passwordFocusNode = FocusNode();
     confirmPasswordFocusNode = FocusNode();
   }
 
   @override
-  void dispose(){
+  void dispose() {
     super.dispose();
     passwordFocusNode!.dispose();
     confirmPasswordFocusNode!.dispose();
-
   }
 
-  
+  ///[final do código que esconde e mostra senha]
+  ///incluimos o codigo acima nos seguintes atributos:
+  ///focusNode
+  ///onTap
+  ///obscureText
+  ///suffixIcon
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -69,7 +75,7 @@ class _InputTextPassWidgetState extends State<InputTextPassWidget> {
           padding: const EdgeInsets.only(left: 16, right: 16),
           child: TextField(
             focusNode: confirmPasswordFocusNode,
-            onTap: (){
+            onTap: () {
               setState(() {
                 FocusScope.of(context).unfocus();
                 FocusScope.of(context).requestFocus(confirmPasswordFocusNode);
@@ -86,8 +92,11 @@ class _InputTextPassWidgetState extends State<InputTextPassWidget> {
               errorBorder: InputBorder.none,
               filled: true,
               suffixIcon: IconButton(
-                icon: Icon(Icons.remove_red_eye, color: Colors.grey,),
-                onPressed: () => setState((){
+                icon: Icon(
+                  !showPassword ? Icons.remove_red_eye : Icons.visibility_off ,
+                  color: Colors.grey,
+                ),
+                onPressed: () => setState(() {
                   showPassword = !showPassword;
                   showConfirmPassword = !showConfirmPassword;
                 }),
