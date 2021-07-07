@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zero_to_hero/modules/login/login_controller.dart';
 import 'package:zero_to_hero/modules/login/utils/login_validators.dart';
 import 'package:zero_to_hero/modules/login/widgets/button_elevated_widget.dart';
 import 'package:zero_to_hero/shared/theme/app_images.dart';
@@ -16,6 +17,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  final controller = LoginController();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -57,21 +61,26 @@ class _LoginPageState extends State<LoginPage> {
                       ///[caso eu coloque o botão logar com google tenho que por height:20]
                       // SizedBox(height: 20),
                       InputTextEmailWidget(
-                        onChange: print,
+                        onChange: (email) => controller.onChangedAndValidate(email: email),
                         onValidate: LoginValidators.email,
                         label: 'Email:',
                       ),
                       SizedBox(
                         height: 20,
                       ),
-                      InputTextPassWidget(        
+                      InputTextPassWidget(   
+                        onChange: (password) => controller.onChangedAndValidate(password: password),     
                         onValidate: LoginValidators.password,               
                         label: 'Senha',
                       ),
-                      ElevatedButtonWidget(
+                      ValueListenableBuilder(
+                        valueListenable: controller.enabledButtonNotifier,
+                         builder: (context, enabled, widget) => enabled as bool ?  ElevatedButtonWidget(
                         voidCallback: () {},
                         label: 'Entrar',
-                      ),
+                      ) : Container(),
+
+                         ),
 
                       ///[caso eu queria um botão para entrar com conta google]
                       // ElevatedButtonWidget(

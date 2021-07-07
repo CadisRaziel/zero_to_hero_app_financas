@@ -12,10 +12,12 @@ typedef String InputValidate(String value);
 class InputTextPassWidget extends StatefulWidget {
   final String label;
   final InputValidate onValidate;
+  final void Function(String value)? onChange;
   const InputTextPassWidget({
     Key? key,
     required this.label,
     required this.onValidate,
+    this.onChange
   }) : super(key: key);
 
   @override
@@ -26,6 +28,9 @@ class _InputTextPassWidgetState extends State<InputTextPassWidget> {
   String? _error;
 
   void onChangedValidate(String value) {
+      if(widget.onChange != null){
+      widget.onChange!(value);
+    }
     if (value.isNotEmpty) {
       _error = widget.onValidate(value);
       setState(() {});
