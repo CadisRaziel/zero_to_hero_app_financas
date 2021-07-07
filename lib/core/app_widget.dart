@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zero_to_hero/modules/login/login_page.dart';
+import 'package:zero_to_hero/modules/login/pages/create_account/create_account.dart';
+import 'package:zero_to_hero/modules/login/pages/login/login_page.dart';
+import 'package:zero_to_hero/modules/login/pages/recovery_password/recovery_password.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -12,6 +14,11 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home: LoginPage(),
+      routes: {
+        'page_login': (context) => LoginPage(),
+        'page_create_account': (context) => CreateAccountPage(),
+        'recovery_password_page': (context) => RecoveryPasswordPage()
+      },
     );
   }
 }

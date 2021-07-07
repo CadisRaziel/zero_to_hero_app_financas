@@ -29,7 +29,7 @@ class _InputTextEmailWidgetState extends State<InputTextEmailWidget> {
 
 
   ///[validação de login e senha]
-  void onChangedValidate(String value) {
+  void onChangedValidate(String value) {   
     if(widget.onChange != null){
       widget.onChange!(value);
     }
@@ -60,11 +60,7 @@ class _InputTextEmailWidgetState extends State<InputTextEmailWidget> {
               errorText: _error,
               //focusedErrorBorder = para tirar a linha vermelha do input quando email não é validio
               focusedErrorBorder: InputBorder.none,
-              errorBorder: InputBorder.none,
-              suffixIcon: Icon(
-                Icons.check_circle_outline_outlined,
-                color: Colors.teal,
-              ),
+              errorBorder: InputBorder.none,              
               filled: true,
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16),

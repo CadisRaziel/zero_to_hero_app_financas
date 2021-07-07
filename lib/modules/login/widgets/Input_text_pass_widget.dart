@@ -12,10 +12,12 @@ typedef String InputValidate(String value);
 class InputTextPassWidget extends StatefulWidget {
   final String label;
   final InputValidate onValidate;
+  final void Function(String value)? onChange;
   const InputTextPassWidget({
     Key? key,
     required this.label,
     required this.onValidate,
+    this.onChange
   }) : super(key: key);
 
   @override
@@ -26,34 +28,40 @@ class _InputTextPassWidgetState extends State<InputTextPassWidget> {
   String? _error;
 
   void onChangedValidate(String value) {
+      if(widget.onChange != null){
+      widget.onChange!(value);
+    }
     if (value.isNotEmpty) {
       _error = widget.onValidate(value);
       setState(() {});
     }
   }
 
+  ///[Colocando o código para esconder a senha e mostrar ela]
   bool showPassword = true;
   bool showConfirmPassword = true;
 
-  FocusNode? passwordFocusNode;
   FocusNode? confirmPasswordFocusNode;
 
   @override
-  void initState() {   
-    super.initState();
-    passwordFocusNode = FocusNode();
+  void initState() {
+    super.initState();    
     confirmPasswordFocusNode = FocusNode();
   }
 
   @override
-  void dispose(){
-    super.dispose();
-    passwordFocusNode!.dispose();
+  void dispose() {
+    super.dispose();  
     confirmPasswordFocusNode!.dispose();
-
   }
 
-  
+  ///[final do código que esconde e mostra senha]
+  ///incluimos o codigo acima nos seguintes atributos:
+  ///focusNode
+  ///onTap
+  ///obscureText
+  ///suffixIcon
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -69,7 +77,7 @@ class _InputTextPassWidgetState extends State<InputTextPassWidget> {
           padding: const EdgeInsets.only(left: 16, right: 16),
           child: TextField(
             focusNode: confirmPasswordFocusNode,
-            onTap: (){
+            onTap: () {
               setState(() {
                 FocusScope.of(context).unfocus();
                 FocusScope.of(context).requestFocus(confirmPasswordFocusNode);
@@ -86,8 +94,11 @@ class _InputTextPassWidgetState extends State<InputTextPassWidget> {
               errorBorder: InputBorder.none,
               filled: true,
               suffixIcon: IconButton(
-                icon: Icon(Icons.remove_red_eye, color: Colors.grey,),
-                onPressed: () => setState((){
+                icon: Icon(
+                  !showPassword ? Icons.remove_red_eye : Icons.visibility_off ,
+                  color: Colors.grey,
+                ),
+                onPressed: () => setState(() {
                   showPassword = !showPassword;
                   showConfirmPassword = !showConfirmPassword;
                 }),
